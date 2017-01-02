@@ -1,0 +1,196 @@
+<html>
+    <!--This file deals with the object oriented js details -->
+    
+    <head>
+        <title>Object Oriented Javascript- Using prototype</title>
+    
+    </head>
+    <body>
+        <script language="javascript" type="text/javascript">
+            /*Creating objects in javascript using prototype. Here Animal defines the blueprint or the class which
+            has the various in-built properties and the encapsulation is done using setter and getter methods.
+            */
+            function Animal()
+            {
+                this.name = "No Name";
+                this.sound = "Grrr";
+                this.owner = "No Owner";
+            }
+            
+            Animal.prototype.setOwner = function(newOwner)
+            {
+                if(typeof newOwner != 'undefined')
+                {
+                    this.owner = newOwner;
+                }
+                else
+                {
+                    document.write("Please enter a valid owner"+"<br/>");
+                }
+            }
+            
+            Animal.prototype.getOwner = function()
+            {
+                return this.owner;
+            }
+            
+            Animal.prototype.setName = function(newName)
+            {
+                if(typeof newName != 'undefined')
+                {
+                    this.name = newName;
+                }
+                else
+                {
+                    document.write("Please enter a new name"+"<br/>");
+                }
+            }
+            
+            Animal.prototype.getName = function()
+            {
+                return this.name;
+            }
+            
+            Animal.prototype.setSound = function(newSound)
+            {
+                if(typeof newSound != 'undefined')
+                {
+                    this.sound = newSound;
+                }
+                else
+                {
+                    document.write("Please enter the animal's sound"+"<br/>");        
+                }
+            }
+            
+            Animal.prototype.getSound = function()
+            {
+                return this.sound;
+            }
+            
+            var dog = new Animal();
+            
+            dog.setName("Spot");
+            dog.setOwner("Paul");
+            dog.setSound();
+            
+            document.write("Animal's Name is "+dog.getName()+"<br/>");
+            document.write("Animal's Owner is "+dog.getOwner()+"<br/>");
+            document.write("Animal's Sound is "+dog.getSound()+"<br/>");
+            
+            //Inheritance in Javascript
+            function Cat()
+            {
+                Animal.call(this);//Using inheritance
+                this.mode = "Happy";
+            }
+            
+            Cat.prototype = new Animal();//Set the animal as superclass
+            Cat.prototype.constructor = Cat;
+            
+            Cat.prototype.setMode = function(newMode)
+            {
+                if(typeof newMode != 'undefined')
+                {
+                    this.mode = newMode;
+                }
+                else
+                {
+                    document.write("Please enter a valide mode "+"<br/>");
+                }
+            }
+            
+            Cat.prototype.getMode = function()
+            {
+                return this.mode;
+            }
+            
+            var billi = new Cat();
+            billi.setName("Sophie");
+            billi.setOwner("Bill");
+            billi.setSound("Meow");
+            
+            
+            document.write("Cat's name is "+billi.getName()+"<br/>");
+            document.write("Cat's owner is "+billi.getOwner()+"<br/>");
+            document.write("Cat's sound is "+billi.getSound()+"<br/>");
+            document.write("Cat's mode is "+billi.getMode()+"<br/>");
+            
+            function Dog()
+            {
+                Animal.call(this);
+                this.mode = "Fatihful";
+            }
+            Dog.prototype = new Animal();
+            Dog.prototype.constructor = Dog;
+            
+            var dog = new Dog();
+            dog.setName("Grrr");
+            dog.setOwner("Burraahh");
+            dog.setSound("Bhou");
+            
+            Dog.prototype.getMode = function()
+            {
+                return this.mode;
+            }
+            
+            document.write("Dog's name is "+dog.getName()+"<br/>");
+            document.write("Dog's owner is "+dog.getOwner()+"<br/>");
+            document.write("Dog's sound is "+dog.getSound()+"<br/>");
+            document.write("Dog's mode is "+dog.getMode()+"<br/>");
+            
+            document.write(billi instanceof Cat);
+            document.write("<br/>"+typeof(billi));
+            
+            
+            
+            
+            //Method overloading in javascript
+            Cat.prototype.setStuff = function(newName, newSound, newOwner)
+            {
+                if((typeof newName != 'undefined') && (typeof newSound != 'undefined') && (typeof newOwner != 'undefined'))
+                {
+                    //Overrides the above set stuff function
+                    Cat.prototype.setStuff = function(newName, newSound, newOwner)
+                    {
+                        this.name = newName;
+                        this.sound = newSound;
+                        this.owner = newOwner;
+                    }
+                }
+                else if((typeof newName != 'undefined') && (typeof newSound != 'undefined'))
+                {
+                    Cat.prototype.setStuff = function(newName, newSound)
+                    {
+                        this.name = newName;
+                        this.sound = newSound;
+                    }
+                }
+            }
+            
+            billi.setStuff("Sophie1","Meow1","Owner1");
+            document.write("Cat's name is "+billi.getName()+"<br/>");
+            document.write("Cat's owner is "+billi.getOwner()+"<br/>");
+            document.write("Cat's sound is "+billi.getSound()+"<br/>");
+            
+            billi.setStuff("Sophie1","Meow1","Owner1");
+            document.write("Cat's name is "+billi.getName()+"<br/>");
+            document.write("Cat's owner is "+billi.getOwner()+"<br/>");
+            document.write("Cat's sound is "+billi.getSound()+"<br/>");
+            
+            billi.setStuff("Sophie2","Meow2","Owner2");
+            document.write("Cat's name is "+billi.getName()+"<br/>");
+            document.write("Cat's owner is "+billi.getOwner()+"<br/>");
+            document.write("Cat's sound is "+billi.getSound()+"<br/>");
+            
+            //Polymorphism in javascript
+            
+            -->    
+        </script>
+        <noscript>
+            <h3>This site does not support Javascript</h3>
+        </noscript>
+    
+    </body>
+
+</html>

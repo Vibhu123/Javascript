@@ -1,0 +1,140 @@
+<html>
+    <!--This html file deals with the various event handlers we have (most commonly used) in javascript -->
+    <head>
+        <title>JS Event handlers</title>
+        <style>
+            #h3style
+            {
+                color:gray;
+            }
+        </style>
+    
+    </head>
+    
+    <body onResize="changeImage();" onLoad="alert('website loaded');">
+        <script language="javascript" type="text/javascript">
+            function changeImage()
+            {
+                document.getElementById("littlebrain").style.height="35%";
+                document.getElementById("littlebrain").style.width="35%";
+                return true;
+            }
+            
+            function alertme()
+            {
+                alertmsg = document.getElementById("littlebrain").src+"\nHeight: " + document.getElementById("littlebrain").height+"\nWidth: "+
+                    document.getElementById("littlebrain").width;
+                alert(alertmsg);
+                return true;
+            }
+            function changeColor()
+            {
+                document.getElementById("h3style").style.color="red";
+                document.getElementById("h3style").firstChild.nodeValue="Excited";
+                return true;
+            }
+            function changeAgain()
+            {
+                document.getElementById("h3style").style.color="gray";
+                document.getElementById("h3style").firstChild.nodeValue="Bored";
+                return true;  
+            }
+            function showPara()
+            {
+                document.getElementById("first").style.visibility=(document.formex.firstpara.checked)?"visible":"hidden";
+                
+                document.getElementById("second").style.visibility=(document.formex.secondpara.checked)?"visible":"hidden";
+                
+                document.getElementById("third").style.visibility=(document.formex.thirdpara.checked)?"visible":"hidden";
+            
+            }
+            
+        </script>
+        <noscript>
+            <h3>This site does not support javascript</h3>
+        </noscript>
+        <img src="LittleBrain.jpg" id="littlebrain" onClick="alertme();" onDblClick="alert('You double clicked')"/>
+        <h3 id="h3style" onMouseOver="changeColor();" onMouseOut="changeAgain();">Rollover</h3>
+        <p id="first">This is a paragraph</p>
+        <p id="second">This is a paragraph</p>
+        <p id="third">This is a paragraph</p>
+        
+        <form name="formex">
+            <input type="checkbox" name="firstpara" onClick="showPara();"/><br/>
+            <input type="checkbox" name="secondpara" onClick="showPara();"/><br/>
+            <input type="checkbox" name="thirdpara" onClick="showPara();"/><br/>
+            
+        </form>
+        
+        <form name="formex1">
+            <p>Text input</p>
+            <input type="text" name="mousex" />Mouse X Position<br/>
+            <input type="text" name="mousey" />Mouse Y Position<br/>
+            <input type="text" name="keypress"/>Key Pressed<br/>
+            <input type="text" name="mousebutton"/>Mouse Button<br/>
+        </form>
+        <script>
+            var mie = (navigator.appName == "Microsoft Internet Explorer")?true:false;
+            if(!mie)
+            {
+                document.captureEvents(Event.MOUSEMOVE);
+                document.captureEvents(Event.MOUSEDOWN);
+                document.captureEvents(Event.KEYPRESS);
+            }
+            
+            document.onmousemove = mousePos;
+            document.onmousedown = mouseClicked;
+            document.onkeypress = keyPressed;
+            
+            var mouseClick = 0;
+            var keyClicked = 0;
+            var mouseX = 0;
+            var mouseY = 0;
+            
+            function mousePos(e)
+            {
+                if(!mie)
+                 {
+                    mouseX = e.pageX;
+                    mouseY = e.pageY;
+                 }
+                document.formex1.mousex.value=mouseX;
+                document.formex1.mousey.value=mouseY;
+                return true;
+            }
+            function keyPressed(e)
+            {
+                if(!mie)
+                {
+                    keyClicked = String.fromCharCode(e.charCode);
+                }
+                if(!keyClicked)
+                    return false;
+                document.formex1.keypress.value=keyClicked;
+                return true;
+            }
+            function mouseClicked(e)
+            {
+                if(!mie)
+                {
+                    switch(e.which)
+                    {
+                        case 1:
+                            document.formex1.mousebutton.value="Left";
+                            break;
+                        case 2:
+                            document.formex1.mousebutton.value="Middle";
+                            break;
+                        default:
+                            document.formex1.mousebutton.value="Right";
+                            break;
+                    }
+                }
+                return true;
+            }
+          
+            
+        </script>
+    </body>
+
+</html>

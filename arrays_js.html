@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>Arrays in Javascript</title>
+    </head>
+    <body>
+        <script language = "javascript" type="text/javascript">
+            <!--Hide Javascript
+            //Working with Arrays in Javascript
+                var sampArray = new Array();
+                sampArray[0] = "Derek";
+                sampArray[1] = "123 Main";
+                sampArray[2] = 36;
+                
+                for(i in sampArray)
+                {
+                    document.write(sampArray[i]+"<br/>");
+                }
+                
+                document.write(sampArray.length+"<br/>");
+            
+                var sampArray2 = new Array("Hello","Sally",45);
+                var sampArray3 = ["Hello1","Sam",47];
+            
+                var sampArray4 = sampArray.concat(sampArray2);
+            
+                for(i in sampArray4)
+                {
+                    document.write(sampArray4[i]+"<br/>");
+                }
+            
+                document.write("Array String: "+sampArray.join(", ")+"<br/>");//Join with a string separate the contents with a space
+                document.write("Array Slice: "+sampArray.slice(0,2)+"<br/>");//Slice pieces out of an array
+                document.write("Reversed array "+sampArray.reverse()+"<br/>");//Reverses the array
+                
+                //Array splicing
+                var numList = [2,6,7,9,1,3,0,8];
+                document.write("Sort array "+numList.sort()+"<br/>");//Uses radix sort
+                document.write("Length of array is "+numList.length+"<br/>");
+                document.write("Spliced array "+numList.splice(0,3)+"<br/>");//Delete the contents of the array
+                for(i in numList)
+                    {
+                        document.write(numList[i]+"<br/>");
+                    }
+                document.write("Length of array is "+numList.length+"<br/>");
+                document.write("Replace values "+numList.splice(0,3,21,32,44)+"<br/>");//Use splice to replace the three defined values
+                document.write("Array after replacing values is "+numList+"<br/>");
+                
+                //Multi dimensional array
+                var multiArray = [[1,2,3,4,5],[6,7,8,9,10]];
+                document.write(multiArray[1][3]+"<br/>");
+                
+                for(var i=0; i<multiArray.length; i++)
+                {
+                    for(var j=0; j<multiArray[0].length; j++)
+                    {
+                        document.write(multiArray[i][j]+" ");
+                    }
+                    document.write("<br/>");
+                }
+            
+                //Working with functions in javascript
+                function addThese(num1, num2)
+                {
+                    return num1+num2+"<br/>";
+                }
+                document.write("1 + 2 = "+addThese(1,2));
+            
+                function addMany(a,b)
+                {
+                    var i = 0;
+                    var sum = 0;
+                    document.write("Arguments length "+arguments.length+"<br/>");
+                    while(i<arguments.length)
+                    {
+                        sum = sum+arguments[i];
+                        i++;
+                    }
+                    document.write("Sum of arguments is "+sum);
+                    
+                }
+                //We can use the below trick for method overloading
+                addMany(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+                addMany(1,1,1,1);
+                addMany(1,1,1,1,1,1,1,1);
+                addMany(1,1,1);
+                addMany(1,1,1,1,1);
+            
+                //Scope in Javascript, block scope does not exist in JS
+                scopeTest = 1;
+                
+                function scopey()
+                {
+                    var scopeTest = 2;
+                    document.write("<br/>"+"Scope var is "+this.scopeTest+"<br/>");//Refers to local var
+                    document.write("Scope var 2 is "+scopeTest+"<br/>");
+                }
+                scopey();
+                document.write("Value of scopey is "+scopeTest+"<br/>");
+            -->
+        </script>
+    </body>
+
+</html>

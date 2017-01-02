@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <title>Form Validation in JS</title>
+    </head>
+    <body>
+        <script language="javascript" type="text/javascript">
+            function editNodeText(regex, input, id, message)
+            {
+                if(!regex.test(input))//If there is an error
+                {
+                    if(id!=null)
+                    {
+                        while(id.firstChild)
+                        {
+                            id.removeChild(id.firstChild);
+                        }
+                        id.appendChild(document.createTextNode(message));
+                    }
+                    return false;
+                }
+                else//If there is not an error
+                {
+                    if(id!=null)
+                    {
+                        while(id.firstChild)
+                        {
+                            id.removeChild(id.firstChild);
+                        }
+                    }
+                    return true;
+                }
+            }
+            
+            
+            function isTheFieldEmpty(inputField, id)
+            {
+                return editNodeText(/^[A-Za-z\.\' \-]{2,15}\s?[A-Za-z\.\' \-]{2,15}\s?[A-Za-z\.\' \-]{2,15}/
+                                   ,inputField.value, id, "Please enter a valid name");
+            }
+            
+            function isAddressOk(inputField, id)
+            {
+                return editNodeText(/^[A-Za-z0-9\.\' \-]{5,30}$/, inputField.value, id, "Please enter a valid address value");
+            }
+            
+            function isStateOk(inputField, id)
+            {
+                return editNodeText(/^A[LKSZRAEP]|C[AOT]|D[EC]$/i, inputField.value, id, "Enter a valid state code");
+            }
+            
+            function isPhoneOk(inputField, id)
+            {
+                    return editNodeText(/^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$/, inputField.value, id, "Please enter a valid phone number");
+            }
+            
+            function isEmailOk(inputField, id)
+            {
+                return editNodeText(/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, inputField.value, id, "Please enter a valid email id")
+            }
+            
+        </script>
+        <noscript>
+            <h3>This site does not support javascript</h3>
+        </noscript>
+        <div>
+            Enter your name:
+            <input id="name" name="name" type="text" size="30" 
+                   onBlur="isTheFieldEmpty(this, document.getElementById('name_help'))">
+            <span id="name_help"></span>
+        
+        </div>
+        <div>
+            Enter your address:
+            <input id="street" name="street" type="text" size="30" 
+                   onBlur="isAddressOk(this, document.getElementById('street_help'))">
+            <span id="street_help"></span>
+        </div>
+        <div>
+            Enter your city:
+            <input id="city" name="city" type="text" size="30" 
+                   onBlur="isTheFieldEmpty(this, document.getElementById('city_help'))">
+            <span id="city_help"></span>
+        </div>
+        <div>
+            Enter your state code:
+            <input id="state" name="state" type="text" size="30" 
+                   onBlur="isStateOk(this, document.getElementById('state_help'))">
+            <span id="state_help"></span>
+        </div>
+        <div>
+            Enter your phone number:
+            <input id="phone" name="phone" type="text" size="30" 
+                   onBlur="isPhoneOk(this, document.getElementById('phone_help'))">
+            <span id="phone_help"></span>
+        </div>
+        <div>
+            Enter your email address:
+            <input id="email" name="email" type="text" size="30" 
+                   onBlur="isEmailOk(this, document.getElementById('email_help'))">
+            <span id="email_help"></span>
+        </div>
+        
+    </body>
+
+</html>

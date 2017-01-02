@@ -1,0 +1,66 @@
+<!--
+Error handling in Javascript using basic notion of division of two numbers in javascript
+-->
+<html>
+    <head>
+        <title>Error handling in JS</title>
+        <script language="javascript" type="text/javascript">
+            function divideNums(id)
+            {
+               var firstNum = document.getElementById('firstnum').value;
+               var secondNum = document.getElementById('secondnum').value;
+                   
+               try {
+                   if(!firstNum || !secondNum)
+                       {
+                           throw new Error("Please enter a value in both fields");
+                       }
+                   else if(isNaN(firstNum)||isNaN(secondNum))
+                       {
+                           throw new Error("Please enter only number in both fields");
+                       }
+                   else if(secondNum == 0)
+                       {
+                           throw new Error("Can't divide by zero");
+                       }
+                   if(id!=null)
+                    {
+                        while(id.firstChild)
+                        {
+                            id.removeChild(id.firstChild);
+                        }
+                        var answer = firstNum/secondNum;
+                        id.appendChild(document.createTextNode(answer));
+                    }
+               } catch(errMsg)
+                   {
+                        if(id!=null)
+                        {
+                           
+                            while(id.firstChild)
+                            {
+                                id.removeChild(id.firstChild);
+                            }
+                            id.appendChild(document.createTextNode(errMsg));
+                        }
+                   }
+            }
+            
+        </script>
+        <noscript>
+            <h3>This site does not support javascript</h3>
+        </noscript>
+    
+    </head>
+    <body>
+        <div>
+            Enter two numbers you want to divide:
+            <br/>
+            <input id="firstnum" name="firstnum" type="text" size="30">
+            <br/>
+            <input id="secondnum" name="secondnum" type="text" size="30" onBlur="divideNums(document.getElementById('answer'))"><br/>
+            Answer after division = <span id="answer"></span>
+        </div>
+        
+    </body>
+</html>

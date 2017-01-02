@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Dealing with DOM objects adding and deleting child elements</title>
+        <script language="javascript" type="text/javascript">
+            function editNodeText(id, newText)
+            {
+                var node = document.getElementById(id);
+                while(node.firstChild)
+                {
+                    node.removeChild(node.firstChild);
+                }
+                node.appendChild(document.createTextNode(newText));
+                document.getElementById(id).style.color='red';
+                document.getElementById(id).style.position='fixed';
+                document.getElementById(id).style.top="20px";
+                
+            }
+            function editNodeText2(id, newText)
+            {
+                var node = document.getElementById(id);
+                node.removeChild(node.firstChild);
+                
+                node.childNodes[2].nodeValue = newText;
+                
+                var newNode = document.createElement('hr');
+                node.appendChild(newNode);
+                
+                var randTextNode = document.createTextNode("I'm random");
+                node.appendChild(randTextNode);
+            }
+            
+        </script>
+        <noscript>
+            <h3>This site does not support Javascript</h3>
+        </noscript>
+    </head>
+    <body>
+        <span id="spanEx" onClick="editNodeText('spanEx','New text')">Change this text</span>
+        <div id="divEx" onClick="editNodeText2('divEx','New Text For Div')">
+            <b>Some bold text</b><br/>
+            <i>Some italic text</i><br/>
+        </div>
+    </body>
+
+</html>

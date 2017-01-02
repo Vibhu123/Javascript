@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Javascript Cookies</title>
+        <script language="javascript" type="text/javascript">
+            function createCookie(id)
+            {
+                var expDate = new Date();
+                
+                expDate.setMonth(expDate.getMonth()+1);
+                
+                var cookieVal = document.getElementById(id).value;
+                
+                document.cookie = id + "=" + cookieVal + ";path=/;expires=" + expDate.toDateString();
+                
+            }
+            function deleteCookie()
+            {
+                var cookieDel = document.getElementById('cookie_delete').value;
+                
+                createCookie(cookieDel, "", -1);
+            }
+            function getCookie()
+            {
+                var cookieName = document.getElementById('get_cookie').value;
+                
+                var allCookies = document.cookie.split(';');
+                
+                var cookieString = "";
+                
+                for(i in allCookies)
+                {
+                    if(allCookies[i].indexOf(cookieName) != -1)
+                    {
+                        match = allCookies[i].replace(" ","");
+                        cookieData = match.substr(cookieName.length+1);  
+                        alert(cookieName+" "+cookieData);
+                    }
+                }
+            
+            
+            }
+            
+        </script>
+        <noscript>
+            This site does not support Javascript
+        </noscript>
+    </head>
+    <body>
+        <div>
+            <p>Enter your first name:<br/></p>
+            <input type="text" id="firstname" onblur="createCookie('firstname');">
+            <p>Enter your last name:<br/></p>
+            <input type="text" id="lastname" onblur="createCookie('lastname');">
+            <p>Cookie to delete:<br/></p>
+            <input type="text" id="cookie_delete" onblur="deleteCookie();">
+            <p>Cookie to get:<br/></p>
+            <input type="text" id="get_cookie" onblur="getCookie();">
+            <br/>
+            <script type="text/javascript">
+              
+                document.write("Every cookie "+document.cookie);
+            
+            </script>
+        </div>
+    
+    </body>
+</html>
